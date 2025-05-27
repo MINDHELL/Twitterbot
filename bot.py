@@ -1,3 +1,4 @@
+import threading
 from pyrogram import Client, filters
 from config import API_ID, API_HASH, BOT_TOKEN
 from twitter_utils import get_latest_tweet_url
