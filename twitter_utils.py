@@ -9,4 +9,9 @@ def get_latest_tweet_url(username):
         raise ValueError("Invalid Twitter username format")
     
     for tweet in sntwitter.TwitterUserScraper(username).get_items():
-        return f"https://twitter.com/{username}/status/{tweet.id}"
+        if tweet.media:
+            for media in tweet.media:
+                if media.type == 'video' or media.type == 'animated_gif':
+                    return f"https://twitter.com/{username}/status/{tweet.id}"
+        break  # Only check the latest tweet
+    return None
